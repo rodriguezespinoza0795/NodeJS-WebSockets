@@ -5,6 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use('/app', express.static('public'));
 
 app.get('/message', (req, res) => {
     console.log(req.headers)
@@ -12,7 +13,7 @@ app.get('/message', (req, res) => {
         "custom-header":"Nuestro Valor personalizado"
     })
     req.query.error === "ok"
-    ? error(req, res, 'Error Simulado', 400)
+    ? error(req, res, 'Error Simulado', 400, 'Es solo una simulación de los Errores')
     : success(req, res, 'Lista de Mensajes', 200)
 
     console.log('BODY', req.body)
