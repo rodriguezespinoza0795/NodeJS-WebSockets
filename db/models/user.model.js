@@ -23,6 +23,11 @@ const UserSchema = {
     type: DataTypes.STRING,
     defaultValue: 'customer'
   },
+  pathImage: {
+    allowNull: false,
+    type: DataTypes.STRING,
+    defaultValue: 'customer'
+  },
   createdAt: {
     allowNull: false,
     type: DataTypes.DATE,

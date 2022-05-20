@@ -1,4 +1,5 @@
 const express = require('express');
+const multer = require('multer')
 
 const UserService = require('../services/user.service');
 // const validatorHandler = require('./../middlewares/validator.handler');
@@ -6,6 +7,16 @@ const UserService = require('../services/user.service');
 
 const router = express.Router();
 const service = new UserService();
+
+const storage  = multer.diskStorage({
+  destination : "public/files",
+  filename : function (req, pathImage, cb) {
+      cb(null, Date.now() + pathImage.originalname)
+  }
+})
+
+const upload = multer({ storage: storage });
+
 
 router.get('/', async (req, res, next) => {
   try {
@@ -15,6 +26,21 @@ router.get('/', async (req, res, next) => {
     next(error);
   }
 });
+
+router.post('/', 
+  upload.single('pathImage'),
+  // validatorHandler(createUserSchema, 'body'),
+  async (req, res, next) => {
+    try {
+      const body = req.body;
+      const pathImage = req.file?.path ? req.file.path : 'src/image'
+      const newUser = await service.create({...body, pathImage: pathImage });
+      res.status(201).json(newUser);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 // router.get('/:id',
 //   validatorHandler(getUserSchema, 'params'),
@@ -29,18 +55,6 @@ router.get('/', async (req, res, next) => {
 //   }
 // );
 
-// router.post('/',
-//   validatorHandler(createUserSchema, 'body'),
-//   async (req, res, next) => {
-//     try {
-//       const body = req.body;
-//       const newCategory = await service.create(body);
-//       res.status(201).json(newCategory);
-//     } catch (error) {
-//       next(error);
-//     }
-//   }
-// );
 
 // router.patch('/:id',
 //   validatorHandler(getUserSchema, 'params'),
