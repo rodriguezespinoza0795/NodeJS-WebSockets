@@ -10,6 +10,9 @@
   "author": "Davidre0795",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.1"
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.19.2"
   }
 }
