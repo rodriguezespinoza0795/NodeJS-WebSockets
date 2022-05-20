@@ -6,3 +6,5 @@
 
 List Items Method: GET `http://localhost:3000/message?orderBy=id&age=26`  
 Add New item Method: POST `http://localhost:3000/message`
+
+Test Error Response: GET `http://localhost:3000/message?error=ok`
