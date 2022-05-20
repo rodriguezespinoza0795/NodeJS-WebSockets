@@ -6,7 +6,8 @@
 
 Load index.html `http://localhost:3000/app/`
 
-List Items Method: GET `http://localhost:3000/message?orderBy=id&age=26`  
-Add New item Method: POST `http://localhost:3000/message`
-
-Test Error Response: GET `http://localhost:3000/message?error=ok`
+List all users: GET `http://localhost:3000/api/user`  
+Get One user: GET `http://localhost:3000/api/user/1`  
+insert one user: POST `http://localhost:3000/api/user`  
+Update user: PATCH `http://localhost:3000/api/user/1`  
+Delete user: Delete `http://localhost:3000/api/user/1`
