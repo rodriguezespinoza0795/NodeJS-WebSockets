@@ -26,7 +26,6 @@ const UserSchema = {
   pathImage: {
     allowNull: false,
     type: DataTypes.STRING,
-    defaultValue: 'customer'
   },
   createdAt: {
     allowNull: false,
